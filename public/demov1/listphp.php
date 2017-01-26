@@ -1,7 +1,7 @@
 <?php
     $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : "1";
     $per_page = isset($_GET['per_page']) ? htmlspecialchars($_GET['per_page']) : "10";
-    $plantList = json_decode(file_get_contents("http://api.landscapeit.dev/vislib/v1?page=" . $page . "&per_page=" . $per_page),false);
+    $plantList = json_decode(file_get_contents("http://api.landscapeit.com/vislib/v1?page=" . $page . "&per_page=" . $per_page),false);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,8 +37,8 @@
 
     <?php foreach($plantList->plants as $plant): ?>
         <div class="row">
-            <div class="col-md-7"><h2><a href="plant.php?id=<?php echo $plant->id ?>&page=<?php echo $page ?>&per_page=<?php echo $per_page ?>"><?php echo $plant->botanical_name ?></a></h2></div>
-            <div class="col-md-5"><h2><a href="plant.php?id=<?php echo $plant->id ?>&page=<?php echo $page ?>&per_page=<?php echo $per_page ?>"><?php echo $plant->common_name ?></a></h2></div>
+            <div class="col-md-7"><h2><a href="plantphp.php?id=<?php echo $plant->id ?>&page=<?php echo $page ?>&per_page=<?php echo $per_page ?>"><?php echo $plant->botanical_name ?></a></h2></div>
+            <div class="col-md-5"><h2><a href="plantphp.php?id=<?php echo $plant->id ?>&page=<?php echo $page ?>&per_page=<?php echo $per_page ?>"><?php echo $plant->common_name ?></a></h2></div>
         </div>
     <?php endforeach; ?>
 

@@ -2,8 +2,8 @@
     $page = isset($_GET['page']) ? htmlspecialchars($_GET['page']) : "1";
     $per_page = isset($_GET['per_page']) ? htmlspecialchars($_GET['per_page']) : "10";
     $id = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : "bad";
-    $plant = json_decode(file_get_contents("http://api.landscapeit.dev/vislib/v1/" . $id),false);
-    if (!isset($plant)) { header('Location: index.php'); exit; }
+    $plant = json_decode(file_get_contents("http://api.landscapeit.com/vislib/v1/" . $id),false);
+    if (!isset($plant)) { header('Location: listphp.php'); exit; }
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +117,7 @@
         <div class="row">
             <div class="col-md-3 page-nav"></div>
             <div class="col-md-6">
-                <p class="summary"><a href="index.php?page=<?php echo $page ?>&per_page=<?php echo $per_page ?>">Back to Plant List</a></p>
+                <p class="summary"><a href="listphp.php?page=<?php echo $page ?>&per_page=<?php echo $per_page ?>">Back to Plant List</a></p>
             </div>
             <div class="col-md-3 page-nav"></div>
         </div>

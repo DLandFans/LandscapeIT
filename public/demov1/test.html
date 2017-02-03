@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Marc McKeown">
+
+    <title>Plant Library</title>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<body>
+
+<script>
+
+
+    // $.ajax({
+    //     url: "inctest1.html",
+    //     // success: function(result){
+    //     //     $('#location1').html(result);
+    //     // }
+    // }).then(function(result) {
+    //     $('#location1').html(result).end();
+    // });
+
+
+
+
+
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "inctest1.html",
+            // success: function(result){
+            //     $('#location1').html(result);
+            // }
+        }).then(function(result) {
+            $('#location1').append(result);
+            alert('done');
+        });
+
+//        $('#location1').append('<div id="insert1"><p>Insert Test</p><div id="insert2"></div></div>');
+
+        $('#insert2').append('test');
+
+//        var test = $('#location1').end().find('#insert2').html('asdf');
+
+        alert('wait');
+
+
+
+    });
+
+
+</script>
+
+<body>
+
+<div id="location1"></div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

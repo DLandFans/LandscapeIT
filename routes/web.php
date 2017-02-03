@@ -16,13 +16,10 @@
 //});
 
 Route::get('/', function () {
-    return "Landscape IT Under Development";
+    // return "Landscape IT Under Development";
+    return view('underconstruction');
 });
 
-Route::get('client', function () {
-    return view('testing');
-});
-
-Route::get('demo', function () {
+Route::get('demotest', function () {
     return view('demo');
 });

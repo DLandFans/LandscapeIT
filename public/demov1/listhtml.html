@@ -1,29 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
+    <meta name="author" content="Marc McKeown">
 
+    <title>Plant Library</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="visuallibrary.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
+
 <body>
 
 <script>
-    var root = 'http://api.landscapeit.com';
 
-    $.ajax({
-        type: "GET",
-        dataType: 'json',
-        url: root + '/vislib/v1/10024'
-    }).then(function(data) {
-        console.log(data);
+    var baseURL = 'http://api.landscapeit.dev/vislib/v1';
+
+        $.ajax({
+            url: "include.html",
+            success: function(result){
+                $('[lvl="Main"]').html(result);
+            }
+        });
+
+
+    $(document).ready(function () {
+        //getInfo();
+
+
+        // $.ajax({
+        //     url: "include.html",
+        //     success: function(result){
+        //         $('[lvl="Main"]').html(result);
+        //     }
+        // });
+
+
+//        $('[lvl="Main"]').load('include.html #PlantList');
+
+//        $('[lvl="PlantRows"]').html('Testing');
+//        $('#ABC').html('Testing');
+
+        $('#ABC').html('Testing');
+
+        $('#TEST').html('here');
+
+
+
     });
+
+    function getInfo(params)
+    {
+        var apiURL;
+        switch(typeof params) {
+            case "number":
+                apiURL = baseURL + "/" + params.toString();  
+                break;
+            case "object":
+                break;
+            default:
+                apiURL = baseURL;
+        }
+
+        $('#TEST').html(apiURL);
+
+        $.ajax(
+            {
+                type: "GET",
+                dataType: 'json',
+                url: apiURL
+            }
+        ).then(function (data) {
+            pageSel(data);
+        });
+    }
+
+    function pageSel(data) {
+        if (data.msg) {
+            $('[lvl="Message"]').html(data.msg);
+            if (data.msg == "Plant List") 
+            {
+                buildList(data);
+            } 
+            else if(data.msg == "Plant Information") 
+            {
+                plantInfo(data);
+            }
+        }
+        else 
+        {
+            $('[lvl="Message"]').html('Oops, something went wrong');
+        }
+    }
+
+    function plantInfo(data) {
+        $('[lvl="Main"]').load('include.html #PlantInfo');
+    }
+
+    function buildList(data) {
+        $('[lvl="Main"]').load('include.html #PlantList');
+        var list;
+        $.each(data.plants, function(key,plant){
+            // $('[lvl="PlantRows"]').load('include.html div[lvl="Row"]');
+            $.get('include.html', function (data){
+                list += $(data).find('[lvl="Row"]'); 
+            });
+        });
+        $('[lvl="PlantRows"]').html("asdfasdfasd");            
+    }
 
 </script>
 
+<body>
+
+<div id="TEST"></div>
+
+<div class="container" id="Wrapper">
+    <div class="page-header"><h1 lvl="Message"></h1></div>
+    <div id="Main" lvl="Main"></div>
+</div>
+
 </body>
 </html>
+
+
+
+
+
+
+

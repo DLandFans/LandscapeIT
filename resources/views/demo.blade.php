@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<a href="http://landscapeit.com/demov1/listphp.php">List PHP</a>
+<a href="http://landscapeit.dev/demov1/listphp.php">List PHP</a>
 <br>
-<a href="http://landscapeit.com/demov1/script.php">Source</a>
+<a href="http://landscapeit.dev/demov1/script.php">Source</a>
 <br><br>
-<a href="http://landscapeit.com/demov1/listhtml.php">List HTML</a>
+<a href="http://landscapeit.dev/demov1/listhtml.html">List HTML</a>
 
 
 </body>
